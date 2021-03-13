@@ -1,0 +1,21 @@
+{% extends "Layout.html" %}
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mt-4">Dashboard</h1>
+    <div class="row">
+        <div class="col mb-4">
+            <form method="post" action="{% url "updateSource" %}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ source.id }}">
+                <div class="form-group">
+                    <label>name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Enter name"
+                        value="{{ source.name }}">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

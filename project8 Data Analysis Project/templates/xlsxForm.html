@@ -1,0 +1,70 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="mt-4">Dashboard</h1>
+    <div class="row">
+        <div class="col mb-4">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>xlsx file</label>
+                    <input type="file" name="file" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            DataTable Example
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+
+
+                        <tr>
+                            <th>Data_Source</th>
+                            <th>Member_ID</th>
+                            <th>Result_Name</th>
+                            <th>Result_Description</th>
+                            <th>Numeric_Result</th>
+                            <th>Patient_DOB</th>
+                            <th>Patient_Gender</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Data_Source</th>
+                            <th>Member_ID</th>
+                            <th>Result_Name</th>
+                            <th>Result_Description</th>
+                            <th>Numeric_Result</th>
+                            <th>Patient_DOB</th>
+                            <th>Patient_Gender</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for data in alldata %}
+                        <tr>
+                            <td>{{ data.Member_ID }}</td>
+                            <td>{{ data.Data_Source }}</td>
+                            <td>{{ data.Test_Name }}</td>
+                            <td>{{ data.Result_Description }}</td>
+                            <td>{{ data.Numeric_Result}}</td>
+                            <td>{{ data.Patient_DOB }}</td>
+                            <td>{{ data.Patient_Gender }}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
